@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>AngularJs First application</title>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script> -->
+    <script src="angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+</head>
+
+<body>
+
+    <div ng-app="myApp" ng-init="email='satish6073@gmail.com'">
+
+        <a href="#!/contact">contact</a>
+        <a href="#!/about">about</a>
+        <a href="#!/">home</a>
+
+        <div>
+            <h1>Routing view</h1>
+            <p>--------------------------------</p>
+            <!-- <div ng-view></div> -->
+            <ng-view></ng-view>
+            <p>--------------------------------</p>
+
+        </div>
+
+        <h2>The Root Scope</h2>
+        <h4> {{color}}</h4>
+
+
+        <p ng-bind="email"></p>
+        <p>Name:<input type="text" ng-model="name"></p>
+        <h1>hello : {{name}}</h1>
+        <p ng-bind="name"></p>
+
+        <div ng-controller="myCtrl">
+            <p>The scope of the controller's favorite color:</p>
+            <h4>{{color}}</h4>
+            <p> first Name : <input type="text" ng-model="firstname"> </p>
+            <p> Last Name : <input type="text" ng-model="lastname"> </p>
+            <p> Full Name : {{firstname +" "+ lastname}}</p>
+        </div>
+        <div ng-controller="myCtrl_second">
+            <p>Phone :{{phone}}</p>
+            <p>add is :{{5+5}}</p>
+            <p>substraction is :{{5-15}}</p>
+            <p>multiply is :{{5*5}}</p>
+
+            <p><input type="text" style="background-color:{{color}}" ng-model="color"></p>
+
+            <div ng-init="a='1';b='2'">
+                <p>a value is : {{a}}</p>
+                <p>b value is : {{b}}</p>
+            </div>
+
+            <!--AngularJS Objects -->
+            <h2> AngularJS Objects </h2>
+
+            <div ng-init="city={c1:'surat',c2:'bhavnager'}">
+                <p>city 1 is: {{city.c1}}</p>
+                <p>city 2 is: {{city.c2}}</p>
+            </div>
+
+            <!-- AngularJS Arrays -->
+            <h2> AngularJS Arrays </h2>
+            <div ng-init="list=['i1','i2','i3','i4']">
+                <ul>
+                    <li>{{list[0]}}</li>
+                    <li ng-bind="list[1]"></li>
+                    <li>{{list[2]}}</li>
+                    <li ng-bind="list[3]"></li>
+                </ul>
+            </div>
+
+            <h2>Repeating HTML Elements</h2>
+            <div ng-init="names=['A','B','C','D','E','F']">
+                <ul>
+                    <li ng-repeat="x in names">
+                        {{x}}
+                    </li>
+                </ul>
+            </div>
+            <!-- Create New custome Directives -->
+            <mydir></mydir>
+
+            <h2>Validate User Input</h2>
+            <form name="myform">
+                Email:<input type="email" name="mail" ng-model="mail">
+                <span ng-show="myform.mail.$error.email">Not a valid e-mail address</span>
+            </form>
+
+
+            <h2>Click to change name</h2>
+            <p ng-click="changeName()">{{change_name}}</p>
+        </div>
+
+
+
+        <div ng-controller="filterctrl">
+            <h2>Filters </h2>
+
+
+            <h4>Uppercase // satish => {{uname|uppercase}}</h4>
+            <h4>lowercase // SATISH => {{lname|lowercase}}</h4>
+            <h2>Simple array display</h2>
+            <ul>
+                <li ng-repeat="item in list">
+                    {{item.id}}=>{{item.name}}
+                </li>
+            </ul>
+            <h2>filter array display</h2>
+            <ul>
+                <li ng-repeat="item in list|orderBy:'name'">
+                    {{item.id}}=>{{item.name}}
+                </li>
+            </ul>
+
+            <h2>Filter an Array Based on User Input</h2>
+            <input type="text" ng-model="test">
+            <ul>
+                <li ng-repeat="n in name | filter:test">
+                    {{n}}
+                </li>
+            </ul>
+
+            <h2>select option</h2>
+            <select ng-model="selectedname" ng-options="n for n in name"></select>
+            <select>
+                <option ng-repeat="n in name">{{n}}</option>
+            </select>
+
+        </div>
+        <div ng-controller="service_like">
+            <h1>{{title}}</h1>
+            <h2>AngularJS Services</h2>
+
+            <h2>THE url for this page is</h2>
+            <h4>{{myurl}}</h4>
+
+            <h2>using http service</h2>
+
+            <!-- <ul>
+                    <li ng-repeat="book in books">
+                        <p>{{book.Title}}</p>
+                        <p>{{book.Description}}</p>
+                    </li>
+                </ul> -->
+
+
+            <h2>Time out service demo</h2>
+            <h4>{{myHeader}}</h4>
+
+            <h2>interval service demo</h2>
+            <h4>{{theTime}}</h4>
+            <h2>Custome service for reverse for given string</h2>
+            <h4>SATISH =>{{strrev}}</h4>
+
+            <h1>AngularJS HTML DOM</h1>
+            <p>Disabled</p>
+            <button ng-disabled="true">click</button>
+            <p>show or hide</p>
+            <h4 ng-show="true">I am visible.</h4>
+            <h4 ng-show="false">I am not visible.</h4>
+            <h4 ng-hide="true">I am visible.</h4>
+            <h4 ng-hide="false">I am not visible.</h4>
+
+            <h1>Events demo</h1>
+            <h4 ng-mousemove="count = count + 1">Mouse Over Me!</h4>
+            <h4>{{ count }}</h4>
+            <button ng-click="count = count + 1">Click me!</button>
+            <p>{{ count }}</p>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <!-- <div data-ng-app=" " data-ng-init="email='satish6073@gmail.com' ">
+        <p data-ng-bind="email "></p>
+    </div> -->
+    <!-- <script src="app.js"></script> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="myApp.js"></script>
+    <script src="myCtrl.js"></script>
+
+</body>
+
+</html>

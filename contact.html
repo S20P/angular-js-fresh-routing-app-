@@ -1,0 +1,13 @@
+<h1>Contact page</h1>
+<h4>{{slogen}}</h4>
+
+<div>
+    <ul>
+        <li ng-repeat="contct in contactlist">
+            {{contct}} <span ng-click="removeContact($index)">&times;</span>
+        </li>
+    </ul>
+
+    <input type="text" ng-model="addme">
+    <button ng-click="addContact()">Add contact</button>
+</div>
